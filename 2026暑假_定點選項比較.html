@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 暑假家庭旅遊・定點選項比較</title>
+<style>
+  :root{
+    --ink:#243b53; --soft:#486581; --muted:#829ab1;
+    --bg:#f7f9fb; --card:#ffffff; --line:#e2e8f0;
+    --accent:#ef8354; --accent2:#2a9d8f; --sun:#f4b942;
+    --good:#2a9d8f; --ok:#7aa6c2; --mid:#c6b89a; --no:#d98c8c;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.7;
+  }
+  .wrap{max-width:980px; margin:0 auto; padding:0 18px 64px;}
+  header.hero{
+    position:relative; color:#fff; text-align:center;
+    padding:56px 18px 64px; overflow:hidden;
+    background:linear-gradient(135deg,#2a9d8f 0%,#457b9d 55%,#ef8354 100%);
+  }
+  header.hero h1{margin:0 0 8px; font-size:30px; letter-spacing:1px;}
+  header.hero p{margin:4px 0; opacity:.95; font-size:15px;}
+  .hero-sky{position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.9;}
+  .hero-inner{position:relative; z-index:1;}
+  .badges{margin-top:14px; display:flex; gap:8px; flex-wrap:wrap; justify-content:center;}
+  .badge{background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.35);
+    padding:4px 12px; border-radius:20px; font-size:13px;}
+  .note{
+    background:#fff4ec; border:1px solid #f6d4bf; border-left:4px solid var(--accent);
+    border-radius:10px; padding:14px 18px; margin:28px 0; font-size:14.5px; color:var(--soft);
+  }
+  h2.section{font-size:20px; margin:40px 0 16px; padding-bottom:8px; border-bottom:2px solid var(--line);}
+  /* table */
+  .tablecard{overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--card);}
+  table{border-collapse:collapse; width:100%; min-width:760px; font-size:13.5px;}
+  th,td{padding:10px 10px; text-align:center; border-bottom:1px solid var(--line);}
+  th{background:#eef3f7; color:var(--soft); font-weight:600; position:sticky; top:0;}
+  td:first-child,th:first-child{text-align:left; font-weight:600;}
+  tr:last-child td{border-bottom:none;}
+  .pill{display:inline-block; min-width:20px; padding:1px 7px; border-radius:20px; color:#fff; font-size:12px;}
+  .p-good{background:var(--good);} .p-ok{background:var(--ok);} .p-mid{background:var(--mid);} .p-no{background:var(--no);}
+  /* cards */
+  .grid{display:grid; grid-template-columns:1fr; gap:22px; margin-top:8px;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden;
+    box-shadow:0 4px 16px rgba(36,59,83,.05); transition:transform .15s, box-shadow .15s;}
+  .card:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(36,59,83,.1);}
+  .card svg.scene{display:block; width:100%; height:170px;}
+  .card .body{padding:18px 20px 22px;}
+  .card h3{margin:0 0 4px; font-size:19px;}
+  .tag{display:inline-block; font-size:12px; color:#fff; background:var(--soft);
+    padding:2px 10px; border-radius:6px; margin-left:8px; vertical-align:middle;}
+  .why{color:var(--soft); margin:8px 0 14px; font-size:14.5px;}
+  .meta{font-size:14px;}
+  .meta b{color:var(--accent2);}
+  .meta ul{margin:6px 0 0; padding-left:20px;}
+  .meta li{margin:3px 0;}
+  .day{background:#f3f7f9; border-radius:8px; padding:10px 14px; margin:12px 0; font-size:13.5px;}
+  .day span{display:block;}
+  .warn{font-size:13px; color:#9a6a4f; background:#fdf4ee; border-radius:8px; padding:8px 12px; margin-top:12px;}
+  .choose{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 24px; margin-top:8px;}
+  .choose li{margin:8px 0; font-size:14.5px;}
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:40px;}
+  .swipe-hint{display:none; font-size:12.5px; color:var(--muted); margin:6px 2px 0;}
+  @media(min-width:720px){ .grid{grid-template-columns:1fr 1fr;} }
+  /* ---- mobile friendly ---- */
+  @media(max-width:719px){
+    .wrap{padding:0 14px 48px;}
+    header.hero{padding:40px 16px 48px;}
+    header.hero h1{font-size:23px; line-height:1.35;}
+    header.hero p{font-size:13.5px;}
+    .badge{font-size:12px; padding:3px 10px;}
+    h2.section{font-size:18px; margin:32px 0 14px;}
+    .note{font-size:14px; padding:12px 14px; margin:22px 0;}
+    .swipe-hint{display:block;}
+    table{min-width:640px; font-size:13px;}
+    th,td{padding:8px 8px;}
+    .card svg.scene{height:150px;}
+    .card .body{padding:16px 16px 20px;}
+    .card h3{font-size:17.5px;}
+    .tag{display:inline-block; margin:6px 0 0; margin-left:0;}
+    .why,.meta{font-size:14px;}
+    .day,.warn{font-size:13px;}
+    .choose{padding:18px 18px;}
+    .choose li{font-size:14px;}
+  }
+  @media(max-width:380px){
+    header.hero h1{font-size:21px;}
+    .badges{gap:6px;}
+  }
+  /* ---- print / PDF ---- */
+  @media print{
+    body{background:#fff;}
+    .swipe-hint{display:none;}
+    .tablecard{overflow:visible;}
+    table{min-width:0; width:100%; font-size:11px;}
+    th,td{padding:6px 5px;}
+    .grid{display:block;}
+    .card{break-inside:avoid; page-break-inside:avoid; box-shadow:none; margin-bottom:12px;}
+    .card svg.scene{height:110px;}
+    .card .body{padding:12px 16px 14px;}
+    .card h3{font-size:16px; margin-bottom:2px;}
+    .why{margin:6px 0 8px; font-size:12.5px;}
+    .meta{font-size:12.5px;}
+    .day{margin:8px 0; padding:8px 12px; font-size:12px;}
+    .day span{line-height:1.5;}
+    .warn{margin-top:8px; padding:6px 10px; font-size:11.5px;}
+    h2.section{margin:18px 0 10px;}
+    header.hero{padding:36px 16px 40px;}
+    a{color:inherit; text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="hero-sky" viewBox="0 0 1000 260" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="850" cy="70" r="42" fill="#ffe7a8" opacity="0.8"/>
+    <path d="M0 200 Q150 150 300 185 T600 180 T1000 175 V260 H0 Z" fill="rgba(255,255,255,0.12)"/>
+    <path d="M0 225 Q200 195 420 220 T1000 215 V260 H0 Z" fill="rgba(255,255,255,0.16)"/>
+  </svg>
+  <div class="hero-inner">
+    <h1>2026 暑假家庭旅遊・定點選項</h1>
+    <p>南部出發 ・ 暑假 ・ 3–4 天 ・ 定點為主 ・ 三代同遊（含 7 歲小孩與長輩）</p>
+    <div class="badges">
+      <span class="badge">♨ 溫泉度假村</span>
+      <span class="badge">親子景點</span>
+      <span class="badge">自然風景</span>
+      <span class="badge">在地美食</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="note">
+    本版已 <b>移除關子嶺、六龜寶來</b>，並 <b>新增中部到北部</b> 選項（F 谷關、G 泰安、H 礁溪）。
+    中部以北車程較長，適合願意多開一點、想換個風景的安排。圖片為示意插圖。
+  </div>
+
+  <h2 class="section">快速比較表</h2>
+  <p class="swipe-hint">← 表格可左右滑動查看完整欄位 →</p>
+  <div class="tablecard">
+    <table>
+      <thead>
+        <tr><th>選項</th><th>地區</th><th>南部車程</th><th>溫泉</th><th>避暑</th><th>親子</th><th>自然</th><th>美食</th><th>定位</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A 恆春／墾丁</td><td>南</td><td>2–3 hr</td><td><span class="pill p-mid">△</span></td><td><span class="pill p-mid">△</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-good">◎</span></td><td>海島度假全包</td></tr>
+        <tr><td>B 台東知本</td><td>東</td><td>2.5–3 hr</td><td><span class="pill p-good">◎</span></td><td><span class="pill p-ok">○</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-ok">○</span></td><td>溫泉＋森林＋海</td></tr>
+        <tr><td>C 日月潭＋清境</td><td>中</td><td>2.5–3 hr</td><td><span class="pill p-ok">○</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-ok">○</span></td><td>避暑湖山度假</td></tr>
+        <tr><td>D 義大世界</td><td>南</td><td>0.5–1 hr</td><td><span class="pill p-no">✕</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-good">◎◎</span></td><td><span class="pill p-no">✕</span></td><td><span class="pill p-ok">○</span></td><td>樂園＋飯店耍廢</td></tr>
+        <tr><td>E 阿里山</td><td>中南高山</td><td>2.5–3 hr</td><td><span class="pill p-no">✕</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-ok">○</span></td><td><span class="pill p-good">◎◎</span></td><td><span class="pill p-ok">○</span></td><td>避暑＋森林鐵道</td></tr>
+        <tr><td>F 台中谷關</td><td>中</td><td>3–3.5 hr</td><td><span class="pill p-good">◎</span></td><td><span class="pill p-ok">○</span></td><td><span class="pill p-ok">○</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-ok">○</span></td><td>中部森林溫泉</td></tr>
+        <tr><td>G 苗栗泰安＋飛牛</td><td>中北</td><td>3–3.5 hr</td><td><span class="pill p-good">◎</span></td><td><span class="pill p-ok">○</span></td><td><span class="pill p-good">◎</span></td><td><span class="pill p-ok">○</span></td><td><span class="pill p-ok">○</span></td><td>溫泉＋牧場親子</td></tr>
+        <tr><td>H 宜蘭礁溪</td><td>北</td><td>4.5–5.5 hr</td><td><span class="pill p-good">◎</span></td><td><span class="pill p-ok">○</span></td><td><span class="pill p-good">◎◎</span></td><td><span class="pill p-ok">○</span></td><td><span class="pill p-good">◎</span></td><td>親子溫泉度假村</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section">各定點詳細介紹</h2>
+  <div class="grid">
+
+    <!-- A 墾丁 -->
+    <div class="card">
+      <svg class="scene" viewBox="0 0 400 170" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="170" fill="#bfe9f2"/>
+        <circle cx="330" cy="40" r="24" fill="#fcd34d"/>
+        <rect y="95" width="400" height="40" fill="#5cc3d6"/>
+        <path d="M0 130 Q200 110 400 130 V170 H0 Z" fill="#f3e2b3"/>
+        <path d="M60 130 q-6-26 8-40 q-18 8-22 20 q14-6 14 20" fill="#3a9d6e"/>
+        <rect x="55" y="128" width="6" height="20" fill="#9c6b3f"/>
+        <path d="M250 96 l14-10 14 10 z" fill="#fff"/><rect x="262" y="96" width="4" height="22" fill="#e0e7ef"/>
+        <path d="M0 120 q30 8 60 0 t60 0" stroke="#fff" stroke-width="2" fill="none" opacity=".6"/>
+      </svg>
+      <div class="body">
+        <h3>A 恆春／墾丁 <span class="tag">南・海島全包</span></h3>
+        <p class="why">海景度假村定點 3 晚當基地，少拉車最適合三代，一趟把溫泉、泳池、親子、自然、海鮮全包。</p>
+        <div class="meta">
+          <b>車程</b>：高雄 2–2.5 hr、台南 2.5–3 hr<br>
+          <b>住宿</b>：夏都沙灘酒店、凱撒大飯店、H 會館
+        </div>
+        <div class="day">
+          <span>D1 海生館 → 入住度假村</span>
+          <span>D2 泳池沙灘耍廢 → 餵鹿 → 後壁湖海鮮</span>
+          <span>D3 龍磐／鵝鑾鼻 → 恆春古城</span>
+          <span>D4 四重溪溫泉 → 回程</span>
+        </div>
+        <div class="warn">⚠ 暑假旺季早訂房；正午高溫＋午後雷陣雨，戶外排早晚，留意颱風。</div>
+      </div>
+    </div>
+
+    <!-- B 知本 -->
+    <div class="card">
+      <svg class="scene" viewBox="0 0 400 170" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="170" fill="#cde9dd"/>
+        <path d="M0 90 L90 30 L170 90 Z" fill="#6ab187"/>
+        <path d="M130 95 L220 25 L320 95 Z" fill="#4e9b72"/>
+        <path d="M260 95 L340 45 L400 95 Z" fill="#6ab187"/>
+        <rect y="92" width="400" height="50" fill="#7fc8d8"/>
+        <rect y="130" width="400" height="40" fill="#e7d9b8"/>
+        <ellipse cx="120" cy="128" rx="34" ry="10" fill="#bfe3ea"/>
+        <path d="M110 120 q4-12 12-12 q-2 8 2 12" stroke="#fff" stroke-width="2" fill="none" opacity=".7"/>
+        <path d="M130 118 q3-10 9-10" stroke="#fff" stroke-width="2" fill="none" opacity=".7"/>
+      </svg>
+      <div class="body">
+        <h3>B 台東知本 <span class="tag">東・最療癒</span></h3>
+        <p class="why">溫泉＋森林＋海一次滿足。溫泉飯店多有滑水道與兒童設施，旁邊就是知本森林遊樂區，步道平緩好走。</p>
+        <div class="meta">
+          <b>車程</b>：高雄走南迴 2.5–3 hr<br>
+          <b>住宿</b>：知本老爺（滑水道）、東遊季、東台溫泉
+        </div>
+        <div class="day">
+          <span>D1 入住溫泉度假村 → 泡湯耍廢</span>
+          <span>D2 知本森林遊樂區 → 玩水 → 鐵花村</span>
+          <span>D3 加路蘭／小野柳海邊 → 回程</span>
+        </div>
+        <div class="warn">⚠ 南迴路程稍長，可中途休息；夏天泡湯選傍晚或室內 SPA。</div>
+      </div>
+    </div>
+
+    <!-- C 日月潭 -->
+    <div class="card">
+      <svg class="scene" viewBox="0 0 400 170" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="170" fill="#d4ebf7"/>
+        <path d="M0 80 L80 35 L150 80 Z" fill="#8aa6b8"/>
+        <path d="M110 85 L210 30 L320 85 Z" fill="#6f93a8"/>
+        <path d="M260 85 L350 40 L400 85 Z" fill="#8aa6b8"/>
+        <rect y="82" width="400" height="60" fill="#5fb0c9"/>
+        <path d="M0 142 Q200 132 400 142 V170 H0 Z" fill="#3d8aa6"/>
+        <ellipse cx="200" cy="112" rx="120" ry="14" fill="#7cc6dc" opacity=".5"/>
+        <path d="M150 110 l40 0 -6 10 -28 0 z" fill="#f3e2b3"/>
+        <rect x="166" y="100" width="3" height="12" fill="#9c6b3f"/><path d="M167 100 l12 6 -12 4 z" fill="#ef8354"/>
+      </svg>
+      <div class="body">
+        <h3>C 日月潭＋清境 <span class="tag">中・避暑</span></h3>
+        <p class="why">暑假主打高山避暑。杉林溪約 20 度、清境涼爽；日月潭搭纜車、遊湖、騎自行車，度假村設施完善。</p>
+        <div class="meta">
+          <b>車程</b>：南部到日月潭 2.5–3 hr<br>
+          <b>住宿</b>：雲品溫泉酒店、力麗溫德姆
+        </div>
+        <div class="day">
+          <span>D1 入住 → 水社碼頭、飯店設施</span>
+          <span>D2 水陸空套票：遊湖＋纜車＋自行車</span>
+          <span>D3 清境餵羊 或 杉林溪瀑布 → 回程</span>
+        </div>
+        <div class="warn">⚠ 上清境/杉林溪山路彎，長輩易暈車可備藥。</div>
+      </div>
+    </div>
+
+    <!-- D 義大 -->
+    <div class="card">
+      <svg class="scene" viewBox="0 0 400 170" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="170" fill="#fde6cf"/>
+        <circle cx="60" cy="40" r="22" fill="#f4b942"/>
+        <g stroke="#e07a5f" stroke-width="3">
+          <line x1="200" y1="150" x2="200" y2="60"/>
+          <line x1="120" y1="150" x2="280" y2="150"/>
+        </g>
+        <circle cx="200" cy="60" r="50" fill="none" stroke="#2a9d8f" stroke-width="4"/>
+        <g stroke="#2a9d8f" stroke-width="3"><line x1="200" y1="10" x2="200" y2="110"/><line x1="150" y1="60" x2="250" y2="60"/><line x1="165" y1="25" x2="235" y2="95"/><line x1="235" y1="25" x2="165" y2="95"/></g>
+        <circle cx="200" cy="10" r="6" fill="#ef8354"/><circle cx="200" cy="110" r="6" fill="#ef8354"/>
+        <circle cx="150" cy="60" r="6" fill="#f4b942"/><circle cx="250" cy="60" r="6" fill="#f4b942"/>
+        <rect y="150" width="400" height="20" fill="#e6c79c"/>
+      </svg>
+      <div class="body">
+        <h3>D 義大世界 <span class="tag">南・最省力</span></h3>
+        <p class="why">幾乎不用拉車，樂園＋購物＋飯店三合一。特洛伊城堡 5 層樓室內冷氣樂園，不怕曬不怕雨，小孩放電首選。</p>
+        <div class="meta">
+          <b>車程</b>：南部市區 0.5–1 hr<br>
+          <b>住宿</b>：義大皇家酒店（千坪戲水）、天悅飯店
+        </div>
+        <div class="day">
+          <span>D1 入住 → 戲水池 → 購物廣場美食</span>
+          <span>D2 義大遊樂世界一票玩到底</span>
+          <span>D3（選）高雄壽山動物園、駁二、科工館</span>
+        </div>
+        <div class="warn">⚠ 沒有溫泉與自然，主打親子樂園與輕鬆省力。</div>
+      </div>
+    </div>
+
+    <!-- E 阿里山 -->
+    <div class="card">
+      <svg class="scene" viewBox="0 0 400 170" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="170" fill="#dcebe4"/>
+        <path d="M0 70 L70 25 L140 70 Z" fill="#4e7a5e"/>
+        <path d="M110 75 L210 20 L320 75 Z" fill="#3c6650"/>
+        <path d="M260 75 L350 35 L400 75 Z" fill="#4e7a5e"/>
+        <rect y="72" width="400" height="98" fill="#cfe0d6"/>
+        <path d="M40 120 q160-30 320 0" stroke="#9c6b3f" stroke-width="5" fill="none"/>
+        <g>
+          <rect x="120" y="100" width="40" height="26" rx="4" fill="#b5462e"/>
+          <rect x="166" y="100" width="40" height="26" rx="4" fill="#c95a3f"/>
+          <rect x="126" y="105" width="12" height="10" fill="#ffe7a8"/><rect x="144" y="105" width="12" height="10" fill="#ffe7a8"/>
+          <rect x="172" y="105" width="12" height="10" fill="#ffe7a8"/><rect x="190" y="105" width="12" height="10" fill="#ffe7a8"/>
+          <circle cx="132" cy="128" r="6" fill="#333"/><circle cx="158" cy="128" r="6" fill="#333"/><circle cx="184" cy="128" r="6" fill="#333"/>
+        </g>
+        <g fill="#3c6650"><path d="M300 120 l10-30 10 30 z"/><path d="M330 122 l8-24 8 24 z"/></g>
+      </svg>
+      <div class="body">
+        <h3>E 阿里山 <span class="tag">高山・森林鐵道</span></h3>
+        <p class="why">上山涼快避暑，森林小火車對 7 歲小孩超有吸引力，神木群步道適合全家漫步。</p>
+        <div class="meta">
+          <b>車程</b>：南部 2.5–3 hr（山路彎多）<br>
+          <b>票價</b>：森林園區本國籍 200／7–12歲 100；小火車神木線 100、祝山線 150
+        </div>
+        <div class="day">
+          <span>D1 上山入住 → 沼平線小火車、巨木棧道</span>
+          <span>D2 祝山線看日出 → 神木線 → 奮起湖便當 → 回程</span>
+        </div>
+        <div class="warn">⚠ 早晚涼帶外套；日出需凌晨出發可彈性；山路長備暈車藥。</div>
+      </div>
+    </div>
+
+    <!-- F 谷關 -->
+    <div class="card">
+      <svg class="scene" viewBox="0 0 400 170" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="170" fill="#e3ede4"/>
+        <path d="M0 80 L90 25 L180 80 Z" fill="#5d8466"/>
+        <path d="M150 85 L250 30 L360 85 Z" fill="#456b50"/>
+        <path d="M300 85 L370 45 L400 85 Z" fill="#5d8466"/>
+        <rect y="82" width="400" height="88" fill="#cddcd2"/>
+        <ellipse cx="200" cy="135" rx="110" ry="26" fill="#9bd0d6"/>
+        <ellipse cx="200" cy="135" rx="78" ry="16" fill="#bfe6ea"/>
+        <g stroke="#fff" stroke-width="2" opacity=".75" fill="none">
+          <path d="M170 120 q4-14 0-22"/><path d="M200 116 q5-16 0-24"/><path d="M230 120 q4-14 0-22"/>
+        </g>
+        <g fill="#3c6650"><path d="M70 130 l9-26 9 26 z"/><path d="M330 130 l9-26 9 26 z"/></g>
+      </svg>
+      <div class="body">
+        <h3>F 台中谷關 <span class="tag">中・森林溫泉</span></h3>
+        <p class="why">無色無味碳酸泉，被山林環抱，邊泡湯邊看山景；旁邊八仙山森林遊樂區步道好走。</p>
+        <div class="meta">
+          <b>車程</b>：南部 3–3.5 hr（台中再進谷關約 1–1.5 hr）<br>
+          <b>住宿</b>：統一渡假村（親子首選）、四季溫泉、虹夕諾雅（頂級）
+        </div>
+        <div class="day">
+          <span>D1 入住溫泉會館泡湯 → 溫泉公園、捎來步道</span>
+          <span>D2 八仙山森林遊樂區 → 回程順遊新社</span>
+        </div>
+        <div class="warn">⚠ 進谷關為山路，留意路況與午後雷陣雨。</div>
+      </div>
+    </div>
+
+    <!-- G 泰安+飛牛 -->
+    <div class="card">
+      <svg class="scene" viewBox="0 0 400 170" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="170" fill="#eaf3df"/>
+        <circle cx="340" cy="38" r="20" fill="#f4b942"/>
+        <path d="M0 110 Q200 88 400 110 V170 H0 Z" fill="#9ccb6a"/>
+        <path d="M0 132 Q200 116 400 132 V170 H0 Z" fill="#7fb84f"/>
+        <!-- cow -->
+        <g>
+          <ellipse cx="150" cy="120" rx="46" ry="26" fill="#fff" stroke="#d9d9d9"/>
+          <path d="M120 110 q12-10 22 0 q-6 12 -22 4 z" fill="#3a3a3a"/>
+          <path d="M170 128 q14-6 20 4 q-12 8 -22 0 z" fill="#3a3a3a"/>
+          <rect x="112" y="138" width="6" height="16" fill="#fff" stroke="#d9d9d9"/>
+          <rect x="180" y="138" width="6" height="16" fill="#fff" stroke="#d9d9d9"/>
+          <ellipse cx="108" cy="116" rx="16" ry="13" fill="#fff" stroke="#d9d9d9"/>
+          <circle cx="103" cy="114" r="2.4" fill="#333"/>
+          <ellipse cx="98" cy="124" rx="7" ry="5" fill="#f7c5c0"/>
+        </g>
+        <path d="M70 100 l8-22 8 22 z" fill="#3c6650"/>
+      </svg>
+      <div class="body">
+        <h3>G 苗栗泰安＋飛牛 <span class="tag">中北・溫泉＋牧場</span></h3>
+        <p class="why">把溫泉和牧場親子綁一起。飛牛牧場餵牛餵羊、大草原放電；泰安溫泉被森林環抱，泡湯放鬆。</p>
+        <div class="meta">
+          <b>車程</b>：南部 3–3.5 hr（飛牛在通霄、泰安在山區，相距約 1 hr）<br>
+          <b>住宿</b>：泰安觀止（森林無邊際泳池）、大湖巧克力雲莊
+        </div>
+        <div class="day">
+          <span>D1 飛牛牧場餵動物、DIY → 入住泰安泡湯</span>
+          <span>D2 大湖採果／巧克力雲莊 或 汶水老街 → 回程</span>
+        </div>
+        <div class="warn">⚠ 牧場與溫泉有段距離，動線先規劃；牧場戶外排早上較涼。</div>
+      </div>
+    </div>
+
+    <!-- H 礁溪 -->
+    <div class="card">
+      <svg class="scene" viewBox="0 0 400 170" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="170" fill="#e7f0f5"/>
+        <path d="M0 70 L80 35 L160 70 Z" fill="#8fb0a0"/>
+        <path d="M130 72 L230 32 L340 72 Z" fill="#6f9686"/>
+        <rect y="70" width="400" height="100" fill="#d7e6ec"/>
+        <!-- resort building -->
+        <rect x="250" y="78" width="110" height="70" fill="#fff" stroke="#dfe7ec"/>
+        <g fill="#bfe0ea"><rect x="260" y="88" width="14" height="14"/><rect x="282" y="88" width="14" height="14"/><rect x="304" y="88" width="14" height="14"/><rect x="326" y="88" width="14" height="14"/><rect x="260" y="110" width="14" height="14"/><rect x="282" y="110" width="14" height="14"/><rect x="304" y="110" width="14" height="14"/><rect x="326" y="110" width="14" height="14"/></g>
+        <!-- onsen pool -->
+        <ellipse cx="110" cy="135" rx="84" ry="22" fill="#8fcfd9"/>
+        <ellipse cx="110" cy="135" rx="58" ry="13" fill="#bfe9ef"/>
+        <g stroke="#fff" stroke-width="2" opacity=".75" fill="none"><path d="M90 122 q4-12 0-20"/><path d="M120 119 q5-14 0-22"/></g>
+        <path d="M60 100 l8-24 8 24 z" fill="#3c6650"/>
+      </svg>
+      <div class="body">
+        <h3>H 宜蘭礁溪 <span class="tag">北・親子溫泉天花板</span></h3>
+        <p class="why">飯店親子設施超強（戲水池、溜滑梯、兒童樂園），周邊景點密度全台最高（餵小鹿、水豚、觀光工廠），美食多。</p>
+        <div class="meta">
+          <b>車程</b>：南部走國道＋雪隧 4.5–5.5 hr（最長，建議排 4 天）<br>
+          <b>住宿</b>：川湯春天、長榮鳳凰、福朋喜來登、寒沐酒店
+        </div>
+        <div class="day">
+          <span>D1 入住溫泉飯店 → 湯圍溝公園泡腳</span>
+          <span>D2 斑比山丘餵鹿 → 星夢森林劇場 → 觀光工廠</span>
+          <span>D3 傳藝中心 → 羅東夜市 → 飯店玩水</span>
+          <span>D4 回程</span>
+        </div>
+        <div class="warn">⚠ 車程最長，務必排足天數；雪隧尖峰易塞，避開週末上下午尖峰。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section">怎麼選</h2>
+  <div class="choose">
+    <ul>
+      <li><b>海島度假全包（溫泉＋耍廢＋親子＋自然＋海鮮）</b> → A 墾丁（主方案）</li>
+      <li><b>溫泉＋森林＋海一次滿足、最療癒</b> → B 台東知本</li>
+      <li><b>最怕熱、想避暑看湖山</b> → C 南投日月潭＋清境/杉林溪</li>
+      <li><b>最省力、讓小孩玩瘋</b> → D 義大世界（離家最近、室內樂園）</li>
+      <li><b>避暑＋小孩想搭森林小火車看神木</b> → E 阿里山</li>
+      <li><b>想要中部的森林溫泉</b> → F 谷關</li>
+      <li><b>溫泉＋牧場餵動物、親子滿分</b> → G 苗栗泰安＋飛牛牧場</li>
+      <li><b>想要最強親子溫泉度假村、不介意拉遠</b> → H 宜蘭礁溪（北部首選，車程最長）</li>
+    </ul>
+  </div>
+
+  <footer>2026 暑假家庭旅遊規劃 ・ 圖片為原創示意插圖 ・ 票價與設施以官方公告為準</footer>
+</div>
+
+</body>
+</html>
